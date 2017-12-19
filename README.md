@@ -1,4 +1,4 @@
-# 5CCS2SEG_Lab Project
+# SEG_Lab Project
 
 Our Q & A site is deployed here https://salty-meadow-39804.herokuapp.com/
 
