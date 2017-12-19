@@ -1,0 +1,21 @@
+{% extends 'ourside/template.html' %}
+{% block title %}KCL Q and A{% endblock %}
+{% block body %}
+{% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+            <li><a href="{% url 'qanda:detail' question.id %}">{{ question.question_title }}</a>
+                posted by
+                {% if question.author %}
+                    <a href="{% url 'qanda:profile' question.author_id %}">{{question.author.user.first_name}} {{ question.author.user.last_name }}</a>
+                {% else %}
+                    &lt;removed&gt;
+                {% endif %}
+                on {{ question.pub_date }}
+
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endif %}
+{% endblock %}

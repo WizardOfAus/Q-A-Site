@@ -1,0 +1,6 @@
+{% extends 'ourside/template.html' %}
+{% block title %}{{ profile.user.first_name }} {{ profile.user.last_name }}{% endblock %}
+{% block body %}
+    <h1>{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
+    <h2>{{ profile.role }} from {{ profile.faculty }}</h2>
+{% endblock %}

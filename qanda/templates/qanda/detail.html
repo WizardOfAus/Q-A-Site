@@ -1,0 +1,33 @@
+{% extends 'ourside/template.html' %}
+{% block title %}{{ question.question_title }}{% endblock %}
+{% block body %}
+<h1>{{ question.question_title }}</h1>
+<p>{{ question.question_text }}</p>
+<p>posted by
+            {% if question.author %}
+                <a href="{% url 'qanda:profile' question.author_id %}">{{question.author.user.first_name}} {{ question.author.user.last_name }}</a>
+            {% else %}
+            &lt;removed&gt;
+            {% endif %} on {{ question.pub_date }}</p>
+<br />
+<h2>Answers</h2>
+<br />
+{% for answer in question.answer_set.all %}
+    <p>{{ answer.answer_text }}</p>
+    <p>posted by
+            {% if answer.author %}
+                    <a href="{% url 'qanda:profile' answer.author_id %}">{{answer.author.user.first_name}} {{ answer.author.user.last_name }}</a>
+            {% else %}
+            &lt;removed&gt;
+            {% endif %} on {{ answer.pub_date }}</p>
+    <br />
+{% endfor %}
+    {% if user.is_authenticated %}
+        <h2>Post an answer</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Post</button>
+        </form>
+    {% endif %}
+{% endblock %}
